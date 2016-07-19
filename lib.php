@@ -39,6 +39,10 @@ defined("TURNITINTOOL_ASSIGNMENT_WRONGCLASS_ERROR") or define("TURNITINTOOL_ASSI
  * in the Turnitin integrations database tables
  */
 defined("TURNITINTOOL_APISRC") or define("TURNITINTOOL_APISRC","12");
+/**
+ * Maximum file size that Turnitin will accept.
+ */
+define('TURNITINTOOL_MAX_FILE_UPLOAD_SIZE', 41943040);
 
 /**
  * Include the loaderbar class file
@@ -53,7 +57,8 @@ require_once(__DIR__."/comms.php");
  * Include the calendar class file.
  */
 require_once($CFG->dirroot . '/calendar/lib.php');
- 
+
+
 /**
  * @param string $feature FEATURE_xx constant for requested feature
  * @return mixed True if module supports feature, null if doesn't know
@@ -87,6 +92,12 @@ function turnitintool_supports($feature) {
 function turnitintool_add_instance($turnitintool) {
 
     global $USER,$CFG;
+
+    ob_start();
+    var_dump($turnitintool);
+    $myresult = ob_get_clean();
+    file_put_contents(__DIR__.'/dump2.txt', $myresult);
+
 
     $turnitintool->timecreated = time();
 
@@ -2714,7 +2725,7 @@ function turnitintool_overallgrade($inboxarray,$maxgrade,$parts,$scale) {
     if ( !is_null( $overallgrade ) AND gettype( $scale ) == 'object' ) {
         return ( $overallgrade == 0 ) ? 1 : ceil( $overallgrade );
     } else {
-        return ( !is_nan( $overallgrade ) AND !is_null( $overallgrade ) ) ? number_format( $overallgrade, 1 ) : '-';
+        return ( !is_nan( $overallgrade ) AND !is_null( $overallgrade ) ) ? number_format( $overallgrade, 2 ) : '-';
     }
 }
 
@@ -5084,10 +5095,10 @@ function turnitintool_view_submission_form_post_29($cm, $turnitintool, $optional
     $output.='  <script language="javascript" type="text/javascript">
                     <!--
                     updateSubFormPost29('.$turnitintool->type.');
-                    updateSubForm(submissionArray,stringsArray,document.submissionform,'.$turnitintool->reportgenspeed.',"'.$utype.'");
+                    updateSubForm(submissionArray,stringsArray,document.getElementById("post_29_submission_form"),'.$turnitintool->reportgenspeed.',"'.$utype.'");
                     //-->
                 </script>';
-    
+
     return $output;
 }
 
@@ -6666,7 +6677,7 @@ function turnitintool_buildgrades($turnitintool,$thisuser) {
             //Using a scale
             $overallgrade=( $gradearray->grades[$thisuser->id]=='-' ) ? NULL : $gradearray->grades[$thisuser->id];
         } else {
-            $overallgrade=( $gradearray->grades[$thisuser->id]=='-' ) ? NULL : number_format( $gradearray->grades[$thisuser->id],1 );
+            $overallgrade=( $gradearray->grades[$thisuser->id]=='-' ) ? NULL : number_format( $gradearray->grades[$thisuser->id],2 );
         }
         $grades->rawgrade=$overallgrade;
         return $grades;
@@ -7607,7 +7618,7 @@ function turnitintool_module_group($cm) {
  * Convert a regular email into the pseudo equivelant for student data privacy purpose
  *
  * @param string $email The user' module's lastname
- * @return string A psuedo email address
+ * @return string A pseudo email address
  */
 function turnitintool_pseudoemail( $email ) {
     global $CFG;
@@ -7622,7 +7633,7 @@ function turnitintool_pseudoemail( $email ) {
 /**
  * Convert a regular firstname into the pseudo equivelant for student data privacy purpose
  *
- * @return string A psuedo firstname address
+ * @return string A pseudo firstname address
  */
 function turnitintool_pseudofirstname() {
     global $CFG;
@@ -7633,7 +7644,7 @@ function turnitintool_pseudofirstname() {
  * Convert a regular lastname into the pseudo equivelant for student data privacy purpose
  *
  * @param string $email The users email address
- * @return string A psuedo lastname address
+ * @return string A pseudo lastname address
  */
 function turnitintool_pseudolastname( $email ) {
     global $CFG;
@@ -7746,6 +7757,24 @@ function turnitintool_get_view_actions() {
  */
 function turnitintool_get_post_actions() {
     return array('submit');
+}
+
+/**
+ * @return int the plugin version for use within the plugin.
+ */
+function turnitintool_get_version() {
+    global $DB, $CFG;
+    $plugin_version = '';
+
+    if ($CFG->branch >= 26) {
+        $module = $DB->get_record('config_plugins', array('plugin' => 'mod_turnitintool', 'name' => 'version'));
+        $plugin_version = $module->value;
+    } else {
+        $module = $DB->get_record('modules', array('name' => 'turnitintool'));
+        $plugin_version = $module->version;
+    }
+
+    return $plugin_version;
 }
 
 /* ?> */

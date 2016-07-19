@@ -1,0 +1,100 @@
+object(stdClass)#37 (48) {
+  ["name"]=>
+  string(26) "firefly test for the fifth"
+  ["type"]=>
+  string(1) "0"
+  ["numparts"]=>
+  string(1) "1"
+  ["portfolio"]=>
+  string(1) "0"
+  ["maxfilesize"]=>
+  string(1) "0"
+  ["defaultdtstart"]=>
+  string(10) "1468829266"
+  ["defaultdtdue"]=>
+  string(10) "1469434066"
+  ["defaultdtpost"]=>
+  string(10) "1469434066"
+  ["anon"]=>
+  string(1) "0"
+  ["studentreports"]=>
+  string(1) "0"
+  ["allowlate"]=>
+  string(1) "0"
+  ["reportgenspeed"]=>
+  string(1) "0"
+  ["submitpapersto"]=>
+  string(1) "1"
+  ["spapercheck"]=>
+  string(1) "1"
+  ["internetcheck"]=>
+  string(1) "1"
+  ["journalcheck"]=>
+  string(1) "1"
+  ["excludebiblio"]=>
+  string(1) "0"
+  ["excludequoted"]=>
+  string(1) "0"
+  ["excludevalue"]=>
+  string(0) ""
+  ["excludetype"]=>
+  string(1) "1"
+  ["transmatch"]=>
+  string(1) "0"
+  ["ownerid"]=>
+  string(0) ""
+  ["grade"]=>
+  int(100)
+  ["gradecat"]=>
+  string(1) "2"
+  ["gradepass"]=>
+  NULL
+  ["visible"]=>
+  string(1) "1"
+  ["cmidnumber"]=>
+  string(0) ""
+  ["groupmode"]=>
+  string(1) "0"
+  ["course"]=>
+  string(1) "2"
+  ["coursemodule"]=>
+  int(4)
+  ["section"]=>
+  int(0)
+  ["module"]=>
+  int(23)
+  ["modulename"]=>
+  string(12) "turnitintool"
+  ["instance"]=>
+  string(0) ""
+  ["add"]=>
+  string(12) "turnitintool"
+  ["update"]=>
+  int(0)
+  ["return"]=>
+  int(0)
+  ["sr"]=>
+  int(0)
+  ["submitbutton2"]=>
+  string(25) "Save and return to course"
+  ["groupingid"]=>
+  int(0)
+  ["completion"]=>
+  int(0)
+  ["completionview"]=>
+  int(0)
+  ["completionexpected"]=>
+  int(0)
+  ["completiongradeitemnumber"]=>
+  NULL
+  ["conditiongradegroup"]=>
+  array(0) {
+  }
+  ["conditionfieldgroup"]=>
+  array(0) {
+  }
+  ["intro"]=>
+  string(90) "<p>Description for firefly test course, 5th edition.</p><p><strong>it worked.</strong></p>"
+  ["introformat"]=>
+  string(1) "1"
+}
