@@ -1,7 +1,9 @@
 Moodle Direct v1
 ================
 
-Please be aware that the **Develop** branch should not be considered production ready, although it contains the latest fixes and features it may contain bugs. It should be avoided in favour of the **Master** branch which is the latest available branch that has been through the QA process. Please make any pull requests you would like to make to the develop branch.
+***The Moodle Direct v1 plugin is currently in the process of being retired and will soon be considered end-of-life. It is suggested that new users install and use Moodle Direct V2 instead, whilst existing users are advised to migrate as soon as possible.***
+
+Please be aware that the **Develop** branch should not be considered production ready, although it contains the latest fixes and features it may also contain bugs. It should be avoided in favour of the **Master** branch which is the latest available branch that has been through the QA process. Please make any pull requests you would like to make to the develop branch.
 
 To see what has changed in recent versions of Moodle Direct V1, see the [CHANGELOG](https://github.com/turnitin/moodle-mod_turnitintool/blob/master/CHANGELOG.md).
 
